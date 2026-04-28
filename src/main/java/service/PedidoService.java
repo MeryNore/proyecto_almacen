@@ -2,16 +2,17 @@ package service;
 
 import model.Pedido;
 import model.Producto;
+import org.springframework.stereotype.Service;
 import repository.PedidoRepository;
 import repository.ProductoRepository;
 
 import java.util.List;
 
-
+@Service
 public class PedidoService {
 
-    private PedidoRepository pedidoRepo;
-    private ProductoService productoService;
+    private final PedidoRepository pedidoRepo;
+    private final ProductoService productoService;
 
     public PedidoService(PedidoRepository pedidoRepo, ProductoService productoService){
         this.pedidoRepo = pedidoRepo;
