@@ -1,6 +1,7 @@
 package controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import service.ProductoService;
 
@@ -15,7 +16,9 @@ public class ProductoController {
     }
 
     @GetMapping("/producto")
-    public String
+    public String listar(Model model){
+        model.addAttribute()
+    }
 
 
 }
