@@ -44,6 +44,14 @@ public class ProductoController {
     //Guardar (sea un INSERT o un UPDATE, en función del id)
     @PostMapping("/guardar")
     public String guardar(Producto producto){
+        service.guardar(producto);
+        return "redirect:/productos";
+    }
 
+    //Eliminar por id
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Long id){
+        service.eliminar(id);
+        return "redirect:/productos";
     }
 }
