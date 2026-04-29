@@ -58,11 +58,24 @@ public class PedidoController {
     //Gestionar pedido - REVISAR!!!
     @GetMapping("pedidos/{id}")
     public String formGestionar(@PathVariable Long id, Model model){
-        model.addAttribute("pedido", service.obtenerPorId(id));
+        model.addAttribute("todosProductos", service.obtenerPorId(id));
         return "/pedidos/productos";
     }
 
+
+    //Asignar producto en pedido
+    @GetMapping("/pedidos/{pid}/asignar/{rid}")
+    public String asignarProducto(Long idPedido, Long idProducto){
+        service.asignarProducto(idPedido, idProducto);
+        return "/pedidos/productos";
+    }
+
+
     //Desasignar producto en pedido
     @GetMapping("/pedidos/{pid}/desasignar/{rid}")
+    public String desasignarProducto(Long idPedido, Long idProducto){
+        service.desasignarProduco(idPedido, idProducto);
+        return "/pedidos/productos";
+    }
 
 }
