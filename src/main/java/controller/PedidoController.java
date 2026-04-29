@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.PedidoService;
 
@@ -39,13 +40,6 @@ public class PedidoController {
         return "redirect:/pedidos";
     }
 
-    //Gestionar pedido - REVISAR
-    @GetMapping("pedidos/{id}")
-    public String formGestionar(@PathVariable Long id, Model model){
-        model.addAttribute("pedido", service.obtenerPorId(id));
-        return ("/pedidos/productos");
-    }
-
     //Mostrar el formulario para crear o editar
     @GetMapping("/pedidos/nuevo")
     public String formNuevo(Model model){
@@ -54,8 +48,19 @@ public class PedidoController {
     }
 
     //Guardar pedido (edición o creación)
-    @GetMapping("/pedidos/guardar")
+    @PostMapping("/pedidos/guardar")
+    public String formGuardar(Pedido pedido){
+        service.guardar(pedido);
+        return "redirect:/pedidos";
+    }
 
+
+    //Gestionar pedido - REVISAR!!!
+    @GetMapping("pedidos/{id}")
+    public String formGestionar(@PathVariable Long id, Model model){
+        model.addAttribute("pedido", service.obtenerPorId(id));
+        return "/pedidos/productos";
+    }
 
     //Desasignar producto en pedido
     @GetMapping("/pedidos/{pid}/desasignar/{rid}")
